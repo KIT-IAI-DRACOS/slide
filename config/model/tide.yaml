@@ -1,0 +1,47 @@
+
+model_name: "tide"
+wandb_project: "skolr"
+
+batch_size: 512
+
+temporal_width: 2
+dropout: 0.3
+num_encoder_layers: 1
+num_decoder_layers: 2
+temporal_decoder_dim: 256
+decoder_output_dim: 4
+hidden_size: 256
+
+use_norm: ${normalization.target}
+use_exog_norm: ${normalization.exogenous}
+
+layernorm: True
+
+lr: 0.01
+lr_monitor: True
+
+
+loss_function: 'mae'
+
+module:
+  _target_: models.tide.tide.TiDE
+  h: ${sample.target_length}
+  input_size: ${sample.input_length}
+  hidden_size: ${model.hidden_size}
+  temporal_width: ${model.temporal_width}
+  dropout: ${model.dropout}
+  layernorm: ${model.layernorm}
+  num_encoder_layers: ${model.num_encoder_layers}
+  num_decoder_layers: ${model.num_decoder_layers}
+  decoder_output_dim: ${model.decoder_output_dim}
+  temporal_decoder_dim: ${model.temporal_decoder_dim}
+  futr_exog_size: ${dataset.num_future_features}
+  hist_exog_size: ${dataset.num_past_features}
+  stat_exog_size: ${dataset.num_static_features}
+  static_cardinalities: ${dataset.static_cardinalities}
+  static_embedding_dims: ${dataset.embedding_dims}
+  lr: ${model.lr}
+  loss_function: ${model.loss_function}
+  inverse_transform: ${scalers.inverse_transform}
+  use_norm: ${model.use_norm}
+  use_exog_norm: ${model.use_exog_norm}

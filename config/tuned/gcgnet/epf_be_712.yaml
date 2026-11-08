@@ -1,0 +1,8 @@
+# @package _global_
+
+model:
+  batch_size: 64
+  lr: 0.001
+  d_ff: 512
+  d_model: 128
+  n_heads: 4

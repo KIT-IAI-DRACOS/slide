@@ -1,0 +1,52 @@
+model_name: "skolr"
+wandb_project: "skolr"
+
+batch_size: 32
+
+patch_len: 24
+num_blocks: 2
+dynamic_dim: 256
+hidden_layers: 2
+dropout: 0.05
+CI: False
+fft_disentanglement: True
+shared_encoder: False
+mask_type: global
+inv_loss: False
+use_static_exog: True
+stationarize: ${normalization.target}
+stationarize_ex: ${normalization.exogenous}
+
+lr: 0.0001
+
+adamw_wd: 5e-4
+
+loss_function: 'mse'
+
+module:
+  _target_: models.skolr.skolr.Model
+  dec_out: ${dataset.num_time_series}
+  seq_len: ${sample.input_length}
+  pred_len: ${sample.target_length}
+  seg_len: ${model.patch_len}
+  num_blocks: ${model.num_blocks}
+  dynamic_dim: ${model.dynamic_dim}
+  hidden_layers: ${model.hidden_layers}
+  dropout: ${model.dropout}
+  CI: ${model.CI}
+  fft_disentanglement: ${model.fft_disentanglement}
+  shareEncoder: ${model.shared_encoder}
+  mask_type: ${model.mask_type}
+  inv_loss: ${model.inv_loss}
+  past_features_dim: ${dataset.num_past_features}
+  future_features_dim: ${dataset.num_future_features}
+  stat_num: ${dataset.num_static_features}
+  static_cardinalities: ${dataset.static_cardinalities}
+  static_embedding_dims: ${dataset.embedding_dims}
+  use_static_exog: ${model.use_static_exog}
+  stationarize: ${model.stationarize}
+  stationarize_ex: ${model.stationarize_ex}
+  lr: ${model.lr}
+  adamw_wd: ${model.adamw_wd}
+  loss_function: ${model.loss_function}
+  inverse_transform: ${scalers.inverse_transform}

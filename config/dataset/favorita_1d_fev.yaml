@@ -1,0 +1,46 @@
+# @package _global_
+
+dataset:
+  dataset_name: favorita_1d_fev
+  source: fev
+  path: autogluon/fev_datasets
+  data_name: favorita_stores_1D
+  target: 'sales'
+  id_column: 'id'
+  past_columns: [oil_price]
+  future_columns: [holiday, onpromotion, day_of_month_sin, day_of_month_cos, day_of_week_sin, day_of_week_cos]
+  string_to_int_cols: [holiday]
+  log_columns: [sales, onpromotion]
+  scale_columns: [oil_price]
+  static_columns: [store_nbr, family, city, state, type, cluster]
+  static_cardinalities: [51, 32, 21, 15, 5, 17]
+  embedding_dims: [8, 6, 5, 4, 3, 5]
+  add_time_features: True
+
+  start: null
+  end: null
+  val_split: 2017-06-20
+  test_split: 2017-07-18
+
+  num_past_features: 1
+  num_future_features: 6
+  num_static_features: 6
+  num_time_series: 1
+
+sample:
+  input_length: 56
+  target_length: 28
+  step_size: 28
+  train_step_size: 7
+
+model:
+  max_steps: 200000
+  loss_function: logmse
+
+normalization:
+  target: true
+  exogenous: false
+
+scalers:
+  target: none
+  inverse_transform: false

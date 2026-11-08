@@ -1,0 +1,8 @@
+# @package _global_
+
+model:
+  batch_size: 256
+  lr: 0.001
+  latent_dim: 128
+  feedthrough: true
+  b_depends_on_u: false

@@ -1,0 +1,39 @@
+# @package _global_
+
+dataset:
+  dataset_name: pjm_712
+  data_directory: data/epf/
+  data_name: PJM.csv
+
+  source: local
+
+  start: null
+  end: null
+  # val_split: 0.7
+  val_split: 36696 # 0.7 split at 24 hour border
+  # test_split: 0.8
+  test_split: 41928 # 0.8 split at 24 hour border
+
+  target: ' Zonal COMED price'
+  num_future_features: 2
+  num_static_features: 0
+  num_past_features: 0
+  static_cardinalities: null
+  embedding_dims: null
+  num_time_series: 1
+
+sample:
+  input_length: 168
+  target_length: 24
+  step_size: 24
+  train_step_size: 1
+
+model:
+  loss_function: mae
+
+normalization:
+  target: true
+  exogenous: false
+
+scalers:
+  inverse_transform: false

@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Tool caches and local settings
+.ruff_cache/
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Experiment outputs
+results/
+wandb/
+
+# Local datasets
+data/*
+!data/epf/
+!data/bouc-wen/
+data/epf/*
+data/bouc-wen/*
+!data/epf/.gitkeep
+!data/bouc-wen/.gitkeep
+!data/bouc-wen/bouc-wen_prep.py

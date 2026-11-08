@@ -1,0 +1,11 @@
+# @package _global_
+
+model:
+  batch_size: 256
+  lr: 0.001
+  latent_dim: 64
+  d_conv: 21
+  delta: 1
+  hidden_dim: 256
+  lr_scheduler: true
+  use_static: true

@@ -1,0 +1,6 @@
+defaults:
+  - slide_ablations
+  - _self_
+
+model_name: "slide_state_dependent"
+state_dependent_ex_encode: True

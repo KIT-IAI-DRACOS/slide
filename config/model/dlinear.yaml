@@ -1,0 +1,35 @@
+model_name: "dlinear"
+wandb_project: "dlinear"
+
+batch_size: 512
+
+kernel_size: 24
+shared_weights: False
+const_init: False
+
+stationarize: ${normalization.target}
+stationarize_ex: ${normalization.exogenous}
+
+lr: 0.001
+lr_scheduler: no_scheduler
+
+loss_function: 'mae'
+
+module:
+  _target_: models.dlinear.dlinear._DLinearModule
+  input_chunk_length: ${sample.input_length}
+  output_chunk_length: ${sample.target_length}
+  output_dim: ${dataset.num_time_series}
+  past_cov_dim: ${dataset.num_past_features}
+  future_cov_dim: ${dataset.num_future_features}
+  static_cov_dim: ${dataset.num_static_features}
+  static_cardinalities: ${dataset.static_cardinalities}
+  static_embedding_dims: ${dataset.embedding_dims}
+  shared_weights: ${model.shared_weights}
+  kernel_size: ${model.kernel_size}
+  const_init: ${model.const_init}
+  stationarize: ${model.stationarize}
+  stationarize_ex: ${model.stationarize_ex}
+  loss_function: ${model.loss_function}
+  lr: ${model.lr}
+  inverse_transform: ${scalers.inverse_transform}

@@ -1,0 +1,36 @@
+
+model_name: "tsmixer"
+wandb_project: "skolr"
+
+batch_size: 32
+
+revin: ${normalization.target}
+revin_exo: ${normalization.exogenous}
+ff_dim: 64
+dropout: 0.0
+n_block: 2
+
+lr: 1e-3
+lr_monitor: True
+
+
+loss_function: 'mae'
+
+module:
+  _target_: models.tsmixer.tsmixer.TSMixerx  
+  h: ${sample.target_length}
+  input_size: ${sample.input_length}
+  n_series: ${dataset.num_time_series}
+  revin: ${model.revin}
+  revin_exo: ${model.revin_exo}
+  ff_dim: ${model.ff_dim}
+  dropout: ${model.dropout}
+  n_block: ${model.n_block}
+  futr_exog_size: ${dataset.num_future_features}
+  hist_exog_size: ${dataset.num_past_features}
+  stat_exog_size: ${dataset.num_static_features}
+  static_cardinalities: ${dataset.static_cardinalities}
+  static_embedding_dims: ${dataset.embedding_dims}
+  lr: ${model.lr}
+  loss_function: ${model.loss_function}
+  inverse_transform: ${scalers.inverse_transform}

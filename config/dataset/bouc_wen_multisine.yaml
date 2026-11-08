@@ -1,0 +1,37 @@
+# @package _global_
+
+dataset:
+  dataset_name: bouc_wen_multisine
+  data_directory: data/bouc-wen/
+  data_name: bouc_wen_multisine.csv
+
+  start: null
+  end: null
+  val_split: 0.7
+  test_split: 0.8
+
+  target: 'y'
+
+  num_time_series: 1
+  num_future_features: 1
+  num_static_features: 0
+  num_past_features: 0
+  static_cardinalities: null
+  embedding_dims: null
+
+  source: local
+
+sample:
+  input_length: 288
+  target_length: 144
+  step_size: 1
+
+model:
+  loss_function: mae
+
+normalization:
+  target: false
+  exogenous: false
+
+scalers:
+  inverse_transform: false

@@ -1,0 +1,13 @@
+# @package _global_
+
+model:
+  batch_size: 512
+  lr: 0.001
+  hidden_size: 512
+  num_encoder_layers: 3
+  num_decoder_layers: 3
+  decoder_output_dim: 8
+  temporal_decoder_dim: 128
+  dropout: 0.3
+  layernorm: false
+  temporal_width: 4

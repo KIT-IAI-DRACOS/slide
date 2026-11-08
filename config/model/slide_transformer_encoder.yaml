@@ -1,0 +1,6 @@
+defaults:
+  - slide_ablations
+  - _self_
+
+model_name: "slide_transformer_encoder"
+transformer_initial_state: True

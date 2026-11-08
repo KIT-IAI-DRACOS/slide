@@ -1,0 +1,6 @@
+defaults:
+  - slide_ablations
+  - _self_
+
+model_name: "slide_mlp_encoder"
+mlp_initial_state: True

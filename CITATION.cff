@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use SLiDE in your research, please cite the NeurIPS 2026 paper."
+type: software
+title: "SLiDE: Structured Linear Dynamics for Forecasting with Exogenous Inputs"
+authors:
+  - family-names: "Pütz"
+    given-names: "Sebastian"
+  - family-names: "Glavas"
+    given-names: "Theodore"
+  - family-names: "Schäfer"
+    given-names: "Benjamin"
+  - family-names: "Oreshkin"
+    given-names: "Boris N."
+  - family-names: "Coates"
+    given-names: "Mark"
+repository-code: "https://github.com/KIT-IAI-DRACOS/slide"
+
+preferred-citation:
+  type: conference-paper
+  title: "SLiDE: Structured Linear Dynamics for Forecasting with Exogenous Inputs"
+  authors:
+    - family-names: "Pütz"
+      given-names: "Sebastian"
+    - family-names: "Glavas"
+      given-names: "Theodore"
+    - family-names: "Schäfer"
+      given-names: "Benjamin"
+    - family-names: "Oreshkin"
+      given-names: "Boris N."
+    - family-names: "Coates"
+      given-names: "Mark"
+  conference:
+    name: "40th Conference on Neural Information Processing Systems (NeurIPS 2026)"
+  collection-title: "Advances in Neural Information Processing Systems"
+  collection-type: proceedings
+  year: 2026

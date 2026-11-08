@@ -1,0 +1,13 @@
+# @package _global_
+
+model:
+  batch_size: 64
+  lr: 0.01
+  latent_dim: 32
+  feedthrough: true
+  b_depends_on_u: true
+
+# Enable normalization to stabilize KoopSubNet training
+normalization:
+  target: true
+  exogenous: true

@@ -1,0 +1,54 @@
+model_name: "slide_ablations"
+wandb_project: "slide_runs"
+
+batch_size: 32
+
+patch_len: 4
+num_blocks: 2
+dynamic_dim: 256
+hidden_layers: 2
+dropout: 0.15
+stationarize: ${normalization.target}
+stationarize_ex: ${normalization.exogenous}
+
+non_linear: False
+mlp_initial_state: False
+transformer_initial_state: False
+transformer_n_layers: 2
+transformer_n_heads: 8
+state_dependent_ex_encode: False
+
+lr: 0.0001
+lr_scheduler: no_scheduler
+adamw_wd: 5e-4
+
+loss_function: 'logmse'
+
+module:
+  _target_: models.slide.slide_ablations.Model
+  seq_len: ${sample.input_length}
+  pred_len: ${sample.target_length}
+  seg_len: ${model.patch_len}
+  num_blocks: ${model.num_blocks}
+  dynamic_dim: ${model.dynamic_dim}
+  hidden_layers: ${model.hidden_layers}
+  dropout: ${model.dropout}
+  non_linear: ${model.non_linear}
+  mlp_initial_state: ${model.mlp_initial_state}
+  transformer_initial_state: ${model.transformer_initial_state}
+  transformer_n_layers: ${model.transformer_n_layers}
+  transformer_n_heads: ${model.transformer_n_heads}
+  state_dependent_ex_encode: ${model.state_dependent_ex_encode}
+  stationarize: ${model.stationarize}
+  stationarize_ex: ${model.stationarize_ex}
+  num_targets: ${dataset.num_time_series}
+  num_past_features: ${dataset.num_past_features}
+  num_future_ex: ${dataset.num_future_features}
+  num_static_ex: ${dataset.num_static_features}
+  static_cardinalities: ${dataset.static_cardinalities}
+  static_embedding_dims: ${dataset.embedding_dims}
+  lr: ${model.lr}
+  lr_scheduler: ${model.lr_scheduler}
+  adamw_wd: ${model.adamw_wd}
+  loss_function: ${model.loss_function}
+  inverse_transform: ${scalers.inverse_transform}

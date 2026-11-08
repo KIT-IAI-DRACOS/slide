@@ -1,0 +1,10 @@
+# @package _global_
+
+model:
+  batch_size: 128
+  lr: 0.001
+  d_ff: 128
+  d_model: 64
+  n_heads: 4
+  use_static: false
+  clamp_logvar: true

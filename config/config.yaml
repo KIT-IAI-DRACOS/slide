@@ -1,0 +1,56 @@
+defaults:
+  - _self_
+  - model: slide
+  - dataset: epf_de_712
+  - optional tuned: ${model}/${dataset}
+  - override hydra/hydra_logging: none
+  - override hydra/job_logging: none
+
+output_directory: results/models/${model.model_name}/
+num_workers: 10
+pin_memory: True
+gpus: 1  #for now only tested with up to 4 gpus on 1 node using ddp
+strategy: auto #ddp_find_unused_parameters_true # tested with ddp for multiple gpus
+save_predictions: False
+
+GPU_num : 0 #for parallel runs
+
+normalization:
+  target: true
+  exogenous: false
+
+scalers:
+  target:  standard   # options: "standard", "none"
+  feature:  standard
+  static:   standard
+  inverse_transform: True
+  scaling_mode: global
+  feature_scaling_mode: global
+
+sample:
+  input_length: 168
+  target_length: 24
+  step_size: 24
+
+model:
+  seed: 42
+  early_stopping: true
+  early_stopping_patience: 5
+  early_stopping_min_delta: 0
+  max_steps: 50000
+  lr_monitor: False
+  checkpointing: True
+  evaluate_end: False
+  wandb_name: ${now:%y%m%d-%H:%M}-${GPU_num}-${model.model_name}-${dataset.dataset_name}
+
+dataset:
+  num_time_series: 1
+  horizon_ex_noise: False
+  horizon_ex_noise_scale: 0.5
+
+hydra:
+  job:
+    chdir: False
+  run:
+    dir: .
+  output_subdir: null

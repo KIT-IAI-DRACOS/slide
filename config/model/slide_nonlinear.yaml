@@ -1,0 +1,6 @@
+defaults:
+  - slide_ablations
+  - _self_
+
+model_name: "slide_nonlinear"
+non_linear: True

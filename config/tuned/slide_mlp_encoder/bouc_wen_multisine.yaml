@@ -1,0 +1,9 @@
+# @package _global_
+
+model:
+  batch_size: 256
+  lr: 5e-05
+  dynamic_dim: 256
+  hidden_layers: 2
+  patch_len: 8
+  dropout: 0.05
